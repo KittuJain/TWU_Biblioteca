@@ -1,14 +1,21 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 public class BibliotecaTest {
+    Biblioteca biblioteca;
+    @Before
+    public void setUp() throws Exception {
+        biblioteca = new Biblioteca(new Library());
+    }
 
     @Test
     public void testGetWelcomeMessageShouldGiveTheWelcomeMessage() {
-        Biblioteca biblioteca = new Biblioteca(new Library());
         StringBuilder expected = new StringBuilder();
         expected.append("*************************");
         expected.append(System.lineSeparator());
@@ -20,9 +27,8 @@ public class BibliotecaTest {
 
     @Test
     public void testGetBookListShouldGiveTheHeadingWhenNoBooksAreAddedInBookList() {
-        Biblioteca biblioteca = new Biblioteca(new Library());
         String bookList = biblioteca.getBookList();
-        String expected = "List Of Books";
+        String expected = "*************List Of Books*************";
         assertEquals(expected,bookList);
     }
 
@@ -33,9 +39,26 @@ public class BibliotecaTest {
         lib.addBook(book);
         Biblioteca biblioteca = new Biblioteca(lib);
         StringBuilder expected = new StringBuilder();
-        expected.append("List Of Books");
+        expected.append("*************List Of Books*************");
         expected.append(System.lineSeparator());
         expected.append("Refactoring - Martin Fowler");
         assertEquals(String.valueOf(expected),biblioteca.getBookList());
+    }
+
+    @Test
+    public void testGetMenuGivesEmptyWhenNoMenuItemsArePresentInLibraryApp() {
+        Menu menu = new Menu();
+        String menuItem = biblioteca.getMenu(menu);
+        String expected = "********** List Of Options **********";
+        assertEquals(expected,menuItem);
+    }
+
+    @Test
+    public void testGetMenuGivesAllTheMenuItemsPresentInLibraryApp() {
+        Menu menu = new Menu();
+        menu.addMenuItem(new MenuItem("List Books"));
+        String menuItem = biblioteca.getMenu(menu);
+        String expected = "********** List Of Options **********"+ System.lineSeparator()+"1: List Books";
+        assertEquals(expected, menuItem);
     }
 }

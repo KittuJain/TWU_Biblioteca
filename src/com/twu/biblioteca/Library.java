@@ -14,7 +14,6 @@ public class Library {
         int numberOfBooks = bookList.size();
         bookList.add(book);
         return (bookList.size()>numberOfBooks);
-
     }
     public List<Book> getAllBooks() {
         return bookList;
