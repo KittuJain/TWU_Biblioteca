@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
@@ -37,10 +38,4 @@ public class Biblioteca {
         return String.valueOf(sb);
     }
 
-    public void optionHandler(int menuItemCode) {
-        if(menuItemCode == 1){
-//            System.out.println(getBookList(bookList));
-        }else
-            System.out.println("Invalid Option");
-    }
 }

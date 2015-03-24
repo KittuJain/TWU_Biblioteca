@@ -31,7 +31,20 @@ public class BibliotecaApp {
             System.out.println(System.lineSeparator() + biblioteca.getMenu(menuItems));
             System.out.println("Enter option number:");
             Scanner scan = new Scanner(System.in);
-            biblioteca.optionHandler(scan.nextInt());
+            optionHandler(scan.nextInt());
+        }
+    }
+
+    public void optionHandler(int menuItemCode) {
+        switch (menuItemCode) {
+            case 1:
+                System.out.println(biblioteca.getBookList(bookList));
+                break;
+            case 2:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid Option");
         }
     }
 }
