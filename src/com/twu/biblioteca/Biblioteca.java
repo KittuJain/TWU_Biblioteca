@@ -6,8 +6,16 @@ public class Biblioteca {
     private Library lib;
 
     public Biblioteca(Library lib) {
-
         this.lib = lib;
+    }
+
+    public void run() {
+        System.out.println(getWelcomeMessage());
+        lib.addBook(new Book("The Adventures of Sherlock Holmes", "Arthur Conan Doyle"));
+        lib.addBook(new Book("Wings of Fire", "A. P. J. Abdul Kalam"));
+        lib.addBook(new Book("Ramayana", "Valmiki"));
+        lib.addBook(new Book("Five Point Someone", "Chetan Bhagat"));
+        System.out.println(getBookList());
     }
 
     public String getWelcomeMessage() {
