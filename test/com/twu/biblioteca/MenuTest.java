@@ -17,22 +17,15 @@ public class MenuTest {
 
     @Test
     public void testAddMenuItemsAddsAnItemAndReturnTrueOnAdding() {
-        assertTrue(menu.addMenuItem(new MenuItem("List Books")));
-    }
-
-    @Test
-    public void testGiveMenuItemsGivesEmptyMenuItemsListInitially() {
-        List<MenuItem> menuItems = menu.giveMenuItems();
-        List<MenuItem> expected = new ArrayList<MenuItem>();
-        assertEquals(expected, menuItems);
+        assertTrue(menu.addMenuItem(new MenuItem("List Books"), new ArrayList<MenuItem>()));
     }
 
     @Test
     public void testGiveMenuItemsGivesAListOfItemsAddedInTheList() {
-        menu.addMenuItem(new MenuItem("List Books"));
-        List<MenuItem> menuItems = menu.giveMenuItems();
+        List<MenuItem> menuItems = new ArrayList<MenuItem>();
+        menu.addMenuItem(new MenuItem("List Books"), menuItems);
         List<MenuItem> expected = new ArrayList<MenuItem>();
         expected.add(new MenuItem("List Books"));
-        assertTrue(expected.equals(menuItems));
+        assertEquals(expected, menuItems);
     }
 }

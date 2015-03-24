@@ -10,6 +10,26 @@ public class Book {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (!author.equals(book.author)) return false;
+        if (!bookName.equals(book.bookName)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = bookName.hashCode();
+        result = 31 * result + author.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return  bookName + " - " +author;
     }
