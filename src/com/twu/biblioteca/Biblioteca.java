@@ -1,14 +1,17 @@
 package com.twu.biblioteca;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Biblioteca {
     private Library lib;
     private Menu menu;
+    private boolean keepRunning;
 
     public Biblioteca(Library lib) {
         this.lib = lib;
         menu = new Menu();
+        keepRunning = true;
     }
 
     public void run() {
@@ -19,7 +22,12 @@ public class Biblioteca {
         lib.addBook(new Book("Five Point Someone", "Chetan Bhagat"));
         System.out.println("---------------------------------------");
         menu.addMenuItem(new MenuItem("List Books"));
-        System.out.println(getMenu(menu));
+        while(keepRunning) {
+            System.out.println(System.lineSeparator()+getMenu(menu));
+            System.out.println("Enter option number:");
+            Scanner scan = new Scanner(System.in);
+            optionHandler(scan.nextInt());
+        }
     }
 
     public String getWelcomeMessage() {
@@ -55,5 +63,12 @@ public class Biblioteca {
             sb.append(menuItem);
         }
         return String.valueOf(sb);
+    }
+
+    public void optionHandler(int menuItemCode) {
+        if(menuItemCode == 1){
+            System.out.println(getBookList());
+        }else
+            System.out.println("Invalid Option");
     }
 }
